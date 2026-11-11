@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from llm_backend_lab.main import app
+from taxsplit.main import app
 
 client = TestClient(app)
 

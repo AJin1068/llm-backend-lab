@@ -1,9 +1,9 @@
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 
-from llm_backend_lab.api.routes import conversations
-from llm_backend_lab.core.config import get_settings
-from llm_backend_lab.domain.models import ConversationNotFound
+from taxsplit.api.routes import conversations
+from taxsplit.core.config import get_settings
+from taxsplit.domain.models import ConversationNotFound
 
 
 def create_app() -> FastAPI:

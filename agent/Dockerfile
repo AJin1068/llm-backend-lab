@@ -18,4 +18,4 @@ RUN uv sync --frozen --no-dev
 ENV PATH="/app/.venv/bin:$PATH"
 
 # 0.0.0.0: 이걸 빼면 컨테이너 안의 localhost에서만 열려서 밖에서 접속이 안됨.
-CMD ["uvicorn", "llm_backend_lab.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "taxsplit.main:app", "--host", "0.0.0.0", "--port", "8000"]

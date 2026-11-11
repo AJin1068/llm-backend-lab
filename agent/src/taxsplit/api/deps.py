@@ -3,10 +3,10 @@ from typing import Annotated
 
 from fastapi import Depends
 
-from llm_backend_lab.core.config import Settings, get_settings
-from llm_backend_lab.repositories.base import ConversationRepository
-from llm_backend_lab.repositories.memory import InMemoryConversationRepository
-from llm_backend_lab.services.conversation_service import ConversationService
+from taxsplit.core.config import Settings, get_settings
+from taxsplit.repositories.base import ConversationRepository
+from taxsplit.repositories.memory import InMemoryConversationRepository
+from taxsplit.services.conversation_service import ConversationService
 
 
 @lru_cache

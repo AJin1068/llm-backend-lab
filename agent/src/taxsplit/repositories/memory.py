@@ -1,6 +1,6 @@
 from dataclasses import replace
 
-from llm_backend_lab.domain.models import Conversation
+from taxsplit.domain.models import Conversation
 
 
 class InMemoryConversationRepository:
