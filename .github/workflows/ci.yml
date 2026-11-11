@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  agent:
+    name: agent (pytest + ruff)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: agent
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest
+
+  eval-guard:
+    # 개발 PR이 채점 규칙·채점 코드·정답을 고치지 못하게 막는다.
+    # eval/ 변경은 eval/ 로 시작하는 브랜치의 별도 PR로만 허용한다.
+    name: eval-guard
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Block eval/ changes from non-eval branches
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          changed=$(git diff --name-only "$BASE_SHA"...HEAD -- eval/ ':!eval/README.md')
+          if [ -z "$changed" ]; then
+            echo "eval/ 변경 없음"
+            exit 0
+          fi
+          case "$HEAD_REF" in
+            eval/*) echo "eval/ 브랜치라 허용:"; echo "$changed"; exit 0 ;;
+          esac
+          echo "::error::개발 PR이 eval/을 고쳤습니다. eval/<설명> 브랜치의 별도 PR로 옮기세요."
+          echo "$changed"
+          exit 1

@@ -7,11 +7,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """환경변수와 .env에서 읽는 앱 설정. Spring의 @ConfigurationProperties 역할."""
 
-    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+    model_config = SettingsConfigDict(env_file=("../.env", ".env"), extra="ignore")
 
     app_env: Literal["local", "test", "prod"] = "local"
 
-    database_url: str = ""
+    database_url: str
 
 
 @lru_cache
