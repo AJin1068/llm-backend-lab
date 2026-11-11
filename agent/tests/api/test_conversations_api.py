@@ -3,9 +3,9 @@ from collections.abc import Iterator
 import pytest
 from fastapi.testclient import TestClient
 
-from llm_backend_lab.api.deps import get_conversation_repo
-from llm_backend_lab.main import app
-from llm_backend_lab.repositories.memory import InMemoryConversationRepository
+from taxsplit.api.deps import get_conversation_repo
+from taxsplit.main import app
+from taxsplit.repositories.memory import InMemoryConversationRepository
 
 
 @pytest.fixture

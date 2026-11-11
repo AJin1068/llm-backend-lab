@@ -1,8 +1,8 @@
 import pytest
 
-from llm_backend_lab.domain.models import ConversationNotFound
-from llm_backend_lab.repositories.memory import InMemoryConversationRepository
-from llm_backend_lab.services.conversation_service import ConversationService
+from taxsplit.domain.models import ConversationNotFound
+from taxsplit.repositories.memory import InMemoryConversationRepository
+from taxsplit.services.conversation_service import ConversationService
 
 
 @pytest.fixture

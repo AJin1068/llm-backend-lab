@@ -1,7 +1,7 @@
 from datetime import UTC, datetime
 
-from llm_backend_lab.domain.models import Conversation, ConversationNotFound
-from llm_backend_lab.repositories.base import ConversationRepository
+from taxsplit.domain.models import Conversation, ConversationNotFound
+from taxsplit.repositories.base import ConversationRepository
 
 
 class ConversationService:
