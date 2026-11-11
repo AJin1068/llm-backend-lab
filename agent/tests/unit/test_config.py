@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from llm_backend_lab.core.config import Settings
+from taxsplit.core.config import Settings
 
 
 def test_settings_fails_without_database_url(monkeypatch):

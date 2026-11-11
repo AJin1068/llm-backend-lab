@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status
 
-from llm_backend_lab.api.deps import ConversationServiceDep
-from llm_backend_lab.api.schemas import ConversationResponse, CreateConversationRequest
+from taxsplit.api.deps import ConversationServiceDep
+from taxsplit.api.schemas import ConversationResponse, CreateConversationRequest
 
 router = APIRouter(prefix="/conversations", tags=["conversations"])
 

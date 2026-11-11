@@ -1,4 +1,4 @@
-# llm-backend-lab
+# taxsplit
 
 맞벌이 부부의 연말정산 자료로 공제를 누구에게 넣을지 계산하고, 근거 조문과 함께 설명하는 LLM 에이전트 서비스입니다.
 세액 계산은 코드가, 대화와 설명은 LLM이, 근거는 검색(RAG)이 맡습니다.
@@ -33,7 +33,7 @@ docker compose up --build
 docker compose up -d postgres redis
 cd agent
 uv sync
-uv run uvicorn llm_backend_lab.main:app --reload --port 8080
+uv run uvicorn taxsplit.main:app --reload --port 8080
 ```
 
 테스트 · 린트 (`agent/`에서):
