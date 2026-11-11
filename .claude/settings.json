@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(gh pr merge:*)",
+      "Bash(gh pr review --approve:*)",
+      "Bash(git push origin main:*)",
+      "Bash(git push origin HEAD:main:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Read(./.env)",
+      "Read(./agent/.env)",
+      "Bash(cat .env:*)",
+      "Bash(cat agent/.env:*)"
+    ]
+  }
+}
