@@ -35,6 +35,9 @@
 
 ## 문서
 
+- 제품 요구사항: [docs/prd.md](docs/prd.md)
+- 설계: [docs/design.md](docs/design.md)
+- 평가 계획: [docs/eval-plan.md](docs/eval-plan.md)
 - 개발 기록: [docs/devlog.md](docs/devlog.md)
 
 ## 실행
