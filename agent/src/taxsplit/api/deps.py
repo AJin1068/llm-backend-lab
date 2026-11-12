@@ -4,6 +4,9 @@ from typing import Annotated
 from fastapi import Depends
 
 from taxsplit.core.config import Settings, get_settings
+from taxsplit.llm.call_log import InMemoryLlmCallRepository, LlmCallRepository
+from taxsplit.llm.factory import build_llm_client
+from taxsplit.llm.recording import RecordingLLMClient
 from taxsplit.repositories.base import ConversationRepository
 from taxsplit.repositories.memory import InMemoryConversationRepository
 from taxsplit.services.conversation_service import ConversationService
@@ -22,5 +25,17 @@ def get_conversation_service(
     return ConversationService(repo)
 
 
+@lru_cache
+def get_llm_call_repo() -> LlmCallRepository:
+    # PR 8(#17)에서 Postgres 구현으로 바뀌는 곳은 여기뿐
+    return InMemoryLlmCallRepository()
+
+
+@lru_cache
+def get_llm_client() -> RecordingLLMClient:
+    return build_llm_client(get_settings(), get_llm_call_repo())
+
+
 SettingsDep = Annotated[Settings, Depends(get_settings)]
 ConversationServiceDep = Annotated[ConversationService, Depends(get_conversation_service)]
+LLMClientDep = Annotated[RecordingLLMClient, Depends(get_llm_client)]
