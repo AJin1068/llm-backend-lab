@@ -1,0 +1,38 @@
+# LLM 단가 (USD / 100만 토큰).
+# 출처: https://platform.claude.com/docs/en/about-claude/pricing — 2026-11-12 확인.
+# 표준 처리, 글로벌 추론(inference_geo 미지정) 기준. 배치·fast 모드 단가는 쓰지 않아서 넣지 않았다.
+# cache_write는 5분 캐시 쓰기 단가다. 1시간 캐시를 쓰게 되면 칸을 나눈다.
+# GPT(채점) 단가는 PR 11에서 [openai] 아래에 추가한다.
+
+[anthropic."claude-sonnet-5-5"]
+input = "2"
+output = "10"
+cache_write = "2.50"
+cache_read = "0.10"
+
+# Haiku 5.5는 프롬프트(입력 + 캐시 읽기·쓰기 토큰 합)가 100,000 토큰을 넘으면 비싼 단가가 붙는다.
+[anthropic."claude-haiku-5-5"]
+input = "0.10"
+output = "0.50"
+cache_write = "0.125"
+cache_read = "0.01"
+long_context_threshold = 100000
+
+[anthropic."claude-haiku-5-5".long_context]
+input = "0.50"
+output = "2.50"
+cache_write = "0.625"
+cache_read = "0.05"
+
+# 시나리오④(#33) 비교용
+[anthropic."claude-opus-5-5"]
+input = "4"
+output = "20"
+cache_write = "5"
+cache_read = "0.20"
+
+[anthropic."claude-fable-5-2"]
+input = "8"
+output = "40"
+cache_write = "10"
+cache_read = "0.20"
