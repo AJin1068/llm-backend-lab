@@ -10,7 +10,7 @@
 
 ## 결정
 
-에이전트 핵심은 Python(FastAPI), LLM 게이트웨이는 Kotlin(Spring) 별도 서비스로 둔다. 한 레포(taxsplit)에 `agent/`, `gateway/`, `eval/` 폴더를 둔다. 둘 사이 경계는 HTTP 하나다. Kafka는 쓰지 않는다.
+에이전트 핵심은 Python(FastAPI), LLM 게이트웨이는 Kotlin(Spring) 별도 서비스로 둔다. 한 레포(`taxsplit`, 서비스 이름은 원투원)에 `agent/`, `gateway/`, `eval/` 폴더를 둔다. 둘 사이 경계는 HTTP 하나다. Kafka는 쓰지 않는다.
 
 ## 검토한 대안
 
