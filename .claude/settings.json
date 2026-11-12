@@ -28,7 +28,9 @@
       "Bash(git push -u origin docs/*)",
       "Bash(git push origin docs/*)",
       "Bash(gh issue view:*)",
-      "Bash(gh issue list:*)"
+      "Bash(gh issue list:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr view:*)"
     ],
     "deny": [
       "mcp__github__merge_pull_request",
