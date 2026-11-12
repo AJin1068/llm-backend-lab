@@ -1,0 +1,51 @@
+# LLM 단가표. 단위: USD / 100만 토큰 (MTok). 정확한 계산을 위해 숫자는 문자열(Decimal)로 적는다.
+#
+# 칸:
+#   input        기본 입력 토큰
+#   cache_write  캐시 쓰기 (5분 캐시 단가만. 1시간 캐시는 쓰지 않는다)
+#   cache_read   캐시 읽기·갱신
+#   output       출력 토큰
+#   long_prompt_threshold / [*.long_prompt]
+#                입력(캐시 읽기·쓰기 포함) 합이 문턱을 "넘으면" long_prompt 단가를 쓴다
+#
+# 기준: 전역 라우팅(inference_geo 지정 안 함), 일반 속도(fast mode 아님), Batch 아님.
+# 여기에 없는 모델은 비용을 0이 아니라 빈 값(None)으로 기록한다.
+
+[anthropic."claude-fable-5-2"]
+input = "8"
+cache_write = "10"
+cache_read = "0.20"
+output = "40"
+source = "https://platform.claude.com/docs/en/about-claude/pricing"
+checked = 2026-11-12
+
+[anthropic."claude-opus-5-5"]
+input = "4"
+cache_write = "5"
+cache_read = "0.20"
+output = "20"
+source = "https://platform.claude.com/docs/en/about-claude/pricing"
+checked = 2026-11-12
+
+[anthropic."claude-sonnet-5-5"]
+input = "2"
+cache_write = "2.50"
+cache_read = "0.10"
+output = "10"
+source = "https://platform.claude.com/docs/en/about-claude/pricing"
+checked = 2026-11-12
+
+[anthropic."claude-haiku-5-5"]
+input = "0.10"
+cache_write = "0.125"
+cache_read = "0.01"
+output = "0.50"
+long_prompt_threshold = 100000
+source = "https://platform.claude.com/docs/en/about-claude/pricing#long-context-pricing"
+checked = 2026-11-12
+
+[anthropic."claude-haiku-5-5".long_prompt]
+input = "0.50"
+cache_write = "0.625"
+cache_read = "0.05"
+output = "2.50"
