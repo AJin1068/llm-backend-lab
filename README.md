@@ -5,6 +5,8 @@
 
 ## 구조
 
+![전체 구조](docs/arch.png)
+
 | 폴더 | 언어 | 역할 |
 | --- | --- | --- |
 | `agent/` | Python (FastAPI) | 세액 계산 엔진, 도구 호출 에이전트, 평가 실행 |
@@ -16,6 +18,24 @@
 1. **정확도**: LLM이 계산하지 않는다. 세액 계산 엔진을 국세청 공식 계산 사례로 검증하고, 검증된 엔진으로 기준 정답을 만들어 에이전트를 채점한다.
 2. **신뢰성**: 도구 호출 인자를 검사하고, 실패하면 이유를 모델에 돌려줘 재시도하며, 최대 스텝을 넘으면 멈춘다. 평가 하네스로 전후를 숫자로 비교한다.
 3. **운영**: Kotlin 게이트웨이에서 레이트 리밋, 재시도·타임아웃·서킷 브레이커·폴백, 호출별 토큰·비용 기록을 처리한다. 장애를 일부러 내서 평가 하네스로 성공률을 잰다.
+
+## 주요 결정
+
+| 번호 | 결정 | 한 줄 요약 |
+| --- | --- | --- |
+| [0001](docs/adr/0001-sdk-direct-no-langchain.md) | LangChain 없이 SDK 직접 호출 | 호출 흐름을 직접 보고 고칠 수 있게 |
+| [0002](docs/adr/0002-python-agent-kotlin-gateway.md) | 에이전트 Python, 게이트웨이 Kotlin | AI 호출 관문을 별도 서비스로 |
+| [0003](docs/adr/0003-llm-does-not-calculate.md) | LLM은 계산하지 않는다 | 숫자는 계산 엔진만 낸다 |
+| [0004](docs/adr/0004-ground-truth-chain.md) | 정답은 외부에서 온다 | 국세청 사례 → 계산기 → 기준 정답 |
+| [0005](docs/adr/0005-guardrails-by-machine.md) | 벽은 기계로 지킨다 | 채점 코드·정답은 CI가 보호 |
+| [0006](docs/adr/0006-model-roles.md) | Claude 기본, GPT는 채점만 | 답을 만드는 쪽은 Claude, 채점하는 쪽만 다른 회사 |
+| [0007](docs/adr/0007-frontend-react.md) | 화면은 React | v1 화면 기능 4개로 제한 |
+
+전체 목록과 작성 규칙: [docs/adr/README.md](docs/adr/README.md)
+
+## 문서
+
+- 개발 기록: [docs/devlog.md](docs/devlog.md)
 
 ## 실행
 
