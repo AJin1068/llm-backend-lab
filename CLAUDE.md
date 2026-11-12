@@ -31,10 +31,10 @@ uv run ruff format --check .
 
 ## 작업 순서
 
-1. 작업 전 최신 `main`을 받는다.
+1. 작업 전 최신 `main`을 받는다. 할 일은 GitHub Issue에 있다. Issue 제목의 "PR 번호"(예: `PR 4: 계산 엔진 ①`)가 작업 목록 번호이고, Issue 번호(`#13`)와는 다르다.
 2. 코드를 쓰기 전에 계획을 보여준다: 바꿀 파일, 접근 방법, 대안 1개, 완료 기준을 어떻게 확인할지. 사람이 승인하기 전에는 코드를 쓰지 않는다.
 3. 브랜치 이름은 `<종류>/pr<번호>-<짧은 설명>` (예: `feat/pr04-tax-engine-basic`). 종류는 feat, fix, chore, docs, eval.
-4. PR 하나는 작업 목록의 한 줄 범위만 다룬다. 범위 밖 개선은 PR 설명의 "다음에 할 것"에 적는다.
+4. PR 하나는 Issue 하나를 닫는다. PR 설명에 `Closes #<Issue 번호>`를 쓰고, 범위와 완료 기준은 그 Issue를 따른다. 범위 밖 개선은 PR 설명의 "다음에 할 것"에 적는다.
 5. `uv run pytest`와 ruff가 통과해야 PR을 연다. 테스트를 건너뛰거나 지우거나 xfail로 바꿔서 통과시키지 않는다.
 6. PR 설명은 `.github/pull_request_template.md`를 채운다. 완료 기준 체크와 썰 노트 칸을 비워두지 않는다.
 7. merge는 사람만 한다.
